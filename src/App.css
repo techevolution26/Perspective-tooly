@@ -2,11 +2,16 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  margin: 0;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+.sides{
+  padding-left: 10%;
+  padding-right: 10%;
+}
 .app {
   text-align: center;
   padding: 20px;
@@ -35,7 +40,7 @@ h1 {
 textarea {
   width: 100%;
   height: 100px;
-  padding: 10px;
+  padding: 3px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 15px;
@@ -148,4 +153,37 @@ button:hover {
 } 
 .actions button:hover {
   background-color: #0056b3;
+}
+.preview-container {
+  width: 100%;
+  max-width: 400px;  
+  margin: 20px 0;
+}
+
+.preview-media {
+  width: 100%;  
+  height: auto;   
+  object-fit: contain; 
+}
+
+nav {
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ccc;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
 }

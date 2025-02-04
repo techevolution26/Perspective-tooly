@@ -1,9 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState, } from 'react';
 
 function ViewPage({ perspectives, onLike, onAddComment, onDelete, onEdit }) {
-  const [editingPostId, setEditingPostId] = useState(null); // To track which post is being edited
-  const [editText, setEditText] = useState(''); // To store edited text
-  const [commentText, setCommentText] = useState(''); // To store new comment text
+  const [editingPostId, setEditingPostId] = useState(null);
+  const [editText, setEditText] = useState('');
+  const [commentText, setCommentText] = useState(''); 
+
+  // Handle media URL conversion if the media is a File object
+  const handleMediaUrl = (media) => {
+    // Check if it's a File object (image or video)
+    if (media && media instanceof File) {
+      return URL.createObjectURL(media);
+    }
+    return media; 
+  };
 
   return (
     <div className="view-page">
@@ -20,7 +29,7 @@ function ViewPage({ perspectives, onLike, onAddComment, onDelete, onEdit }) {
                 <button
                   onClick={() => {
                     onEdit(perspective.id, editText);
-                    setEditingPostId(null); // Stop editing
+                    setEditingPostId(null);
                   }}
                 >
                   Save
@@ -32,7 +41,8 @@ function ViewPage({ perspectives, onLike, onAddComment, onDelete, onEdit }) {
                 <div className="text-content">{perspective.text}</div>
                 {perspective.media && (
                   <div className="media-content">
-                    <img src={perspective.media} alt="uploaded content" />
+                    {/* Check if the media is a valid URL and render accordingly */}
+                    <img src={handleMediaUrl(perspective.media)} alt="uploaded content" />
                   </div>
                 )}
                 <div className="timestamp">{perspective.timestamp}</div>
@@ -42,7 +52,7 @@ function ViewPage({ perspectives, onLike, onAddComment, onDelete, onEdit }) {
                   <button onClick={() => onDelete(perspective.id)}>🗑️ Delete</button>
                 </div>
                 <div className="comments">
-                  <h4 className='Comments'>Perceptions:</h4>
+                  <h4>Comments:</h4>
                   {(perspective.comments || []).map((comment, index) => (
                     <div key={index} className="comment">{comment}</div>
                   ))}
@@ -56,7 +66,7 @@ function ViewPage({ perspectives, onLike, onAddComment, onDelete, onEdit }) {
                     <button
                       onClick={() => {
                         onAddComment(perspective.id, commentText);
-                        setCommentText(''); // Clear the input
+                        setCommentText('');
                       }}
                     >
                       Add
