@@ -7,6 +7,7 @@ import Settings from "./components/pages/Settings";
 import Profile from "./components/pages/Profile";
 import ViewPage from "./components/pages/View";
 import InputPage from "./components/pages/Input";
+import SignUpForm from "./components/pages/signUp";
 
 function App() {
   const [perspectives, setPerspectives] = useState([]); // State to store posts
@@ -49,6 +50,16 @@ function App() {
       )
     );
   };
+    // Function to handle form submission
+    const handleSubmit = (formData) => {
+      console.log("Form submitted:", formData);
+    };
+
+    // Function to validate form
+    const validateForm = (formData) => {
+      // Add your validation logic here
+      return true; // Return true if the form is valid, otherwise return false
+    };
 
   return (
     <Router>
@@ -56,6 +67,16 @@ function App() {
       <div className="app">
 
         <Routes>
+        <Route
+        path="/signUp"
+        element = {
+        < SignUpForm
+        handleSubmit={handleSubmit}
+        validation={validateForm}
+
+        
+        />}
+        />
           
           <Route path="Home" element={<Home />} />
           <Route 
