@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Navigation from "./components/Navigation";
 import Home from "./components/pages/Home";
@@ -8,6 +8,8 @@ import Profile from "./components/pages/Profile";
 import ViewPage from "./components/pages/View";
 import InputPage from "./components/pages/Input";
 import SignUpForm from "./components/pages/signUp";
+import SignInForm from "./components/pages/login";
+
 
 function App() {
   const [perspectives, setPerspectives] = useState([]); // State to store posts
@@ -17,7 +19,6 @@ function App() {
     setPerspectives([newPerspective, ...perspectives]); // Add new post to the list
   };
 
-  // Function to handle likes
   const handleLike = (id) => {
     setPerspectives(
       perspectives.map((post) =>
@@ -26,7 +27,18 @@ function App() {
     );
   };
 
-  // Function to handle comments
+  const handleDelete = (id) => {
+    setPerspectives(perspectives.filter((post) => post.id !== id));
+  };
+
+  const handleEdit = (id, updatedText) => {
+    setPerspectives(
+      perspectives.map((post) =>
+        post.id === id ? { ...post, text: updatedText } : post
+      )
+    );
+  };
+
   const handleAddComment = (id, comment) => {
     setPerspectives(
       perspectives.map((post) =>
@@ -37,55 +49,17 @@ function App() {
     );
   };
 
-  // Function to delete a post
-  const handleDelete = (id) => {
-    setPerspectives(perspectives.filter((post) => post.id !== id));
-  };
-
-  // Function to edit a post
-  const handleEdit = (id, updatedText) => {
-    setPerspectives(
-      perspectives.map((post) =>
-        post.id === id ? { ...post, text: updatedText } : post
-      )
-    );
-  };
-    // Function to handle form submission
-    const handleSubmit = (formData) => {
-      console.log("Form submitted:", formData);
-    };
-
-    // Function to validate form
-    const validateForm = (formData) => {
-      // Add your validation logic here
-      return true; // Return true if the form is valid, otherwise return false
-    };
-
   return (
     <Router>
       <Navigation />
       <div className="app">
-
         <Routes>
-        <Route
-        path="/signUp"
-        element = {
-        < SignUpForm
-        handleSubmit={handleSubmit}
-        validation={validateForm}
-
-        
-        />}
-        />
-          
-          <Route path="Home" element={<Home />} />
-          <Route 
-            path="/Input" 
-            element={<InputPage onAddPerspective={handleAddPerspective} />} 
-          />
-
-          <Route 
-            path="/View" 
+          <Route path="/signUp" element={<SignUpForm />} />
+          <Route path="/login" element={<SignInForm />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Input" element={<InputPage onAddPerspective={handleAddPerspective} />} />
+          <Route
+            path="/View"
             element={
               <ViewPage
                 perspectives={perspectives}
@@ -94,13 +68,10 @@ function App() {
                 onDelete={handleDelete}
                 onEdit={handleEdit}
               />
-            } 
+            }
           />
-
-          <Route path="/profile" element={<Profile />} /> clear
-          
-          <Route path="/settings" element={<Settings />} /> 
-
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
     </Router>

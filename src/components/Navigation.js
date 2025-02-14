@@ -5,7 +5,8 @@ const Navigation = () => {
     return(
         <nav className=" bg-white p-4">
             <ul className="flex justify-between">
-                <li><Link to="/signUp" style={{ textDecoration: "none", color: "#007BFF" }}>Sign Up</Link></li> 
+                <li><Link to="/signUp" style={{ textDecoration: "none", color: "#007BFF" }}>SignUp</Link></li> 
+                <li><Link to="/login" style={{ textDecoration: "none", color: "#007BFF" }}>Login</Link></li> 
                 <li><Link to="/Home" style={{textDecoration: "none", color: "#007BFF"}}>Home</Link></li>
                 <li><Link to="/View" style={{ textDecoration: "none", color: "#007BFF" }}>List</Link></li>
                 <li><Link to="/Input" style={{ textDecoration: "none", color: "#007BFF" }} >Create Post</Link></li>

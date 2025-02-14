@@ -1,4 +1,4 @@
-form {
+.signup-form {
     max-width: 400px;
     margin: auto;
     padding: 20px;
@@ -6,15 +6,16 @@ form {
     border-radius: 5px;
 }
 
-form div {
+.signup-form div {
     margin-bottom: 15px;
 }
 
-label {
+.sign-label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
-input {
+.sign-input {
     width: 100;
     padding: 8px;
     border: 1px solid #ccc;
@@ -24,9 +25,10 @@ input {
 .error {
     color: red;
     font-size: 0.9em;
+    text-align: center;
 }
 
-button {
+.signupbtn {
     width: 100%;
     padding: 10px;
     background-color: #28a745;
@@ -38,4 +40,10 @@ button {
   
   button:hover {
     background-color: #218838;
+  }
+
+  .h2 {
+    text-align: center;
+    font-weight: 100;
+    font-size: 50px;
   }

@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 
 function ViewPage({ perspectives, onLike, onAddComment, onDelete, onEdit }) {
   const [editingPostId, setEditingPostId] = useState(null);
